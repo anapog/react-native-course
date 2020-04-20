@@ -20,8 +20,14 @@ function newTodo() {
 		list.value = [];
 	}
 
+	addListItem();
+
+}
+
+function addListItem () {
 	const listElement = document.createElement('li');
 	const text = document.createTextNode(todo.value);
 	listElement.appendChild(text);
 	list.appendChild(listElement);
+	todo.value = "";
 }
