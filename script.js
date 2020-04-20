@@ -21,6 +21,8 @@ function newTodo() {
 	}
 
 	addListItem();
+	clearInputData();
+	increaseTodoListCounter();
 }
 
 function addListItem () {
@@ -32,5 +34,12 @@ function addListItem () {
 	const text = document.createTextNode(todo.value);
 	listElement.appendChild(text);
 	list.appendChild(listElement);
+}
+
+function clearInputData() {
 	todo.value = "";
+}
+
+function increaseTodoListCounter() {
+	itemCountSpan.textContent = list.childElementCount;
 }
