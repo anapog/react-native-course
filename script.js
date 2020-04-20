@@ -21,11 +21,14 @@ function newTodo() {
 	}
 
 	addListItem();
-
 }
 
 function addListItem () {
 	const listElement = document.createElement('li');
+	const checkbox = document.createElement('input');
+	checkbox.setAttribute('type', 'checkbox');
+	checkbox.setAttribute('value', todo.value);
+	listElement.appendChild(checkbox);
 	const text = document.createTextNode(todo.value);
 	listElement.appendChild(text);
 	list.appendChild(listElement);
