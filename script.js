@@ -28,7 +28,7 @@ function addListItem () {
 	const checkbox = document.createElement('input');
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('value', todo.value);
-	checkbox.addEventListener('click', moveToCheckedList);
+	checkbox.addEventListener('click', toggleItemStatus);
 	listElement.appendChild(checkbox);
 	const text = document.createTextNode(todo.value);
 	listElement.appendChild(text);
@@ -47,9 +47,14 @@ function calculateUncheckedCount() {
 	uncheckedCountSpan.textContent = itemCountSpan.textContent - doneList.childElementCount;
 }
 
-function moveToCheckedList() {
+function toggleItemStatus() {
 	let listItem = this.parentElement;
-	todoList.removeChild(listItem);
-	doneList.appendChild(listItem);
+	if (todoList.contains(listItem)) {
+		todoList.removeChild(listItem);
+		doneList.appendChild(listItem);
+	} else {
+		doneList.removeChild(listItem);
+		todoList.appendChild(listItem);
+	}
 	calculateUncheckedCount();
 }
