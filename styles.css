@@ -41,9 +41,23 @@ ul {
 	padding: 10px 20px;
 }
 
-.todo-list {
-	flex: 1 1 0;
-	margin-top: 20px;
+.top-space {
+	margin-top: 30px;
+}
+
+.input-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px 40px 0 40px;
+}
+
+.todo-list-section, .done-list-section {
+	flex: 1 1;
+	margin: 0 20px 0 20px;
+}
+
+.todo-list, .done-list {
 	padding: 20px;
 	overflow-y: auto;
 }
@@ -53,8 +67,7 @@ ul {
 }
 
 .todo-text {
-	width: 80%;
-	align-self: center;
+	width: 100%;
 	margin: 10px;
 }
 

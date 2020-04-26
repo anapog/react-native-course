@@ -6,7 +6,8 @@ const classNames = {
 }
 
 const todo = document.getElementById('todo-text')
-const list = document.getElementById('todo-list')
+const todoList = document.getElementById('todo-list')
+const doneList = document.getElementById('done-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
@@ -16,13 +17,10 @@ function newTodo() {
 		return;
 	}
 
-	if(!list.value) {
-		list.value = [];
-	}
-
 	addListItem();
 	clearInputData();
 	increaseTodoListCounter();
+	calculateUncheckedCount();
 }
 
 function addListItem () {
@@ -30,10 +28,11 @@ function addListItem () {
 	const checkbox = document.createElement('input');
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('value', todo.value);
+	checkbox.addEventListener('click', moveToCheckedList);
 	listElement.appendChild(checkbox);
 	const text = document.createTextNode(todo.value);
 	listElement.appendChild(text);
-	list.appendChild(listElement);
+	todoList.appendChild(listElement);
 }
 
 function clearInputData() {
@@ -41,5 +40,16 @@ function clearInputData() {
 }
 
 function increaseTodoListCounter() {
-	itemCountSpan.textContent = list.childElementCount;
+	itemCountSpan.textContent = todoList.childElementCount + doneList.childElementCount;
+}
+
+function calculateUncheckedCount() {
+	uncheckedCountSpan.textContent = itemCountSpan.textContent - doneList.childElementCount;
+}
+
+function moveToCheckedList() {
+	let listItem = this.parentElement;
+	todoList.removeChild(listItem);
+	doneList.appendChild(listItem);
+	calculateUncheckedCount();
 }
